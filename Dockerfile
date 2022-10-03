@@ -41,7 +41,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositorie
     && apk update \
     && apk add --no-cache curl jq py3-configobj py3-setuptools python3 python3-dev py3-pip gcc g++ make \
     && mkdir /app/lib \
-    && g++ -fPIC -I/usr/lib/jvm/java-1.8-openjdk/include/ -I/usr/lib/jvm/java-1.8-openjdk/include/linux/ \
+    && gcc -fPIC -I/usr/lib/jvm/java-1.8-openjdk/include/ -I/usr/lib/jvm/java-1.8-openjdk/include/linux/ \
     -I/usr/include/python3.8 -I/usr/include/python3.8  -Wno-unused-result -Wsign-compare  -fomit-frame-pointer -g -fno-semantic-interposition -DNDEBUG -g -fwrapv -O3 -Wall \
     -L/usr/lib -lpython3.8 -ldl  -lm -lm \
     /app/cpp-build/*.cpp -shared -o /app/lib/libnuldatabridge.so \
