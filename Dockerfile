@@ -40,6 +40,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositorie
     && apk add --no-cache openjdk8 \
     && apk update \
     && apk add --no-cache curl jq py3-configobj py3-setuptools python3 python3-dev py3-pip gcc g++ make \
+    && mkdir /app/lib \
     && g++ -fPIC -I/usr/lib/jvm/java-1.8-openjdk/include/ -I/usr/lib/jvm/java-1.8-openjdk/include/linux/ \
     /app/cpp-build/*.cpp -shared -o /app/lib/libnuldatabridge.so \
     && rm -rf /app/cpp-build
