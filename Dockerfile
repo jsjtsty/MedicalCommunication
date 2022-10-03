@@ -43,7 +43,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositorie
     && mkdir /app/lib \
     && g++ -fPIC -I/usr/lib/jvm/java-1.8-openjdk/include/ -I/usr/lib/jvm/java-1.8-openjdk/include/linux/ \
     -I/usr/include/python3.8 \
-    -lpython3.8 -ldl -lm -lm -lpthread\
+    $(python3-config --cflags --embed) $(python3-config --embed --ldflags) -lpthread\
     /app/cpp-build/*.cpp -shared -o /app/lib/libnuldatabridge.so \
     && rm -rf /app/cpp-build
 
