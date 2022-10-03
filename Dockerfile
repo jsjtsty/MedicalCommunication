@@ -33,11 +33,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositorie
 ENV LANG=C.UTF-8
 RUN apk update
 # 安装python、pip、pipenv
-RUN apk add --no-cache curl jq py3-configobj py3-setuptools python3 python3-dev && \
-    ln -fs /usr/include/locale.h /usr/include/xlocale.h && \
-    ln -fs /usr/bin/python3 /usr/local/bin/python && \
-    ln -fs /usr/bin/pip3 /usr/local/bin/pip && \
-    pip3 install pipenv
+RUN apk add --no-cache curl jq py3-configobj py3-setuptools python3 python3-dev py3-pip
 
 RUN apk add --no-cache gcc g++ make
 # 指定运行时的工作目录
