@@ -15,6 +15,7 @@ COPY settings.xml pom.xml /app/
 # 自定义settings.xml, 选用国内镜像源以提高下载速度
 RUN mvn -s /app/settings.xml -f /app/pom.xml clean package
 
+
 # 选择运行时基础镜像
 FROM alpine:3.13
 
@@ -26,21 +27,25 @@ RUN apk add ca-certificates
 
 # 安装依赖包，如需其他依赖包，请到alpine依赖包管理(https://pkgs.alpinelinux.org/packages?name=php8*imagick*&branch=v3.13)查找。
 # 选用国内镜像源以提高下载速度
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositories \
-    && apk add --update --no-cache openjdk8-jre-base \
-    && rm -f /var/cache/apk/*
-
 ENV LANG=C.UTF-8
-RUN apk update
-# 安装python、pip、pipenv
-RUN apk add --no-cache curl jq py3-configobj py3-setuptools python3 python3-dev py3-pip
 
-RUN apk add --no-cache gcc g++ make
 # 指定运行时的工作目录
 WORKDIR /app
 
 # 将构建产物jar包拷贝到运行时目录中
-COPY src /app/src
+
+COPY src/main/cpp /cpp-build
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositories \
+    && apk add --update --no-cache openjdk8 \
+    && rm -f /var/cache/apk/* \
+    && apk update \
+    && apk add --no-cache curl jq py3-configobj py3-setuptools python3 python3-dev py3-pip gcc g++ make \
+    && mkdir cpp-build \
+    && g++ -fPIC -l/usr/lib/jvm/java-1.8-openjdk/include -l/usr/lib/jvm/java-1.8-openjdk/include/linux ./cpp-build/*.c ./cpp-build/*.cpp -shared -o ./lib/libnuldatabridge.so \
+    && rm -rf ./cpp-build
+
+
 COPY --from=build /app/target/*.jar .
 
 # 暴露端口
