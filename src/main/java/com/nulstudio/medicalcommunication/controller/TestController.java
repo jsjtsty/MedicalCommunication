@@ -14,6 +14,7 @@ public class TestController {
     public TestEntity index() {
         final String fileName = "./src/main/python/CommunicationTest.py";
         StringBuilder s = new StringBuilder();
+        /*
         File file = new File(fileName);
         BufferedReader reader = null;
         try {
@@ -38,9 +39,8 @@ public class TestController {
                 }
             }
         }
-        /*
+        */
         Process proc;
-        StringBuilder s = new StringBuilder();
         try {
             proc = Runtime.getRuntime().exec("python ./src/main/python/CommunicationTest.py");
             BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream()));
@@ -53,7 +53,6 @@ public class TestController {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-         */
         return new TestEntity(s.toString());
     }
 }

@@ -2,7 +2,8 @@
 # 选择构建用基础镜像。如需更换，请到[dockerhub官方仓库](https://hub.docker.com/_/java?tab=tags)自行选择后替换。
 FROM maven:3.6.0-jdk-8-slim as build
 
-RUN docker pull python
+RUN apt update
+RUN apt install python
 
 # 指定构建过程中的工作目录
 WORKDIR /app
