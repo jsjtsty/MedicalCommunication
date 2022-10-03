@@ -40,6 +40,7 @@ RUN apk add --no-cache gcc g++ make
 WORKDIR /app
 
 # 将构建产物jar包拷贝到运行时目录中
+COPY src /app/src
 COPY --from=build /app/target/*.jar .
 
 # 暴露端口
