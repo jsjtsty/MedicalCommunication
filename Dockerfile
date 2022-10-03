@@ -37,7 +37,7 @@ RUN apk add --no-cache curl jq py3-configobj py3-setuptools python3 python3-dev 
     ln -fs /usr/include/locale.h /usr/include/xlocale.h && \
     ln -fs /usr/bin/python3 /usr/local/bin/python && \
     ln -fs /usr/bin/pip3 /usr/local/bin/pip && \
-    pip install pipenv
+    pip3 install pipenv
 
 RUN apk add --no-cache gcc g++ make
 # 指定运行时的工作目录
