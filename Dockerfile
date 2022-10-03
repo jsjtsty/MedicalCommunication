@@ -35,13 +35,14 @@ WORKDIR /app
 # 将构建产物jar包拷贝到运行时目录中
 
 COPY src/main/cpp /app/cpp-build
+COPY src/main/python /app/python
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositories \
     && apk add --no-cache openjdk8 \
     && apk update \
     && apk add --no-cache curl jq py3-configobj py3-setuptools python3 python3-dev py3-pip gcc g++ make \
     && mkdir /app/lib \
-    && gcc -fPIC -I/usr/lib/jvm/java-1.8-openjdk/include/ -I/usr/lib/jvm/java-1.8-openjdk/include/linux/ \
+    && gcc -std=c++17 -fPIC -I/usr/lib/jvm/java-1.8-openjdk/include/ -I/usr/lib/jvm/java-1.8-openjdk/include/linux/ \
     $(python3.8-config --cflags --embed) \
     -shared -o /app/lib/libnuldatabridge.so /app/cpp-build/*.cpp \
     $(python3.8-config --ldflags --embed) \
