@@ -42,7 +42,7 @@ public class TestController {
         */
         Process proc;
         try {
-            proc = Runtime.getRuntime().exec("python ./src/main/python/CommunicationTest.py");
+            proc = Runtime.getRuntime().exec("python3 ./src/main/python/CommunicationTest.py");
             BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream()));
             String line = null;
             while ((line = in.readLine()) != null) {
