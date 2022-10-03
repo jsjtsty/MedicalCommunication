@@ -6,13 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.io.*;
-
 @Controller
 public class TestController {
 
     static {
-        System.load("./lib/libnuldatabridge.so");
+        System.load("/app/lib/libnuldatabridge.so");
     }
 
     protected native int testJni(int a, int b);
