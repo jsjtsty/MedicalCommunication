@@ -3,7 +3,7 @@
 FROM maven:3.6.0-jdk-8-slim as build
 
 RUN apt update
-RUN apt install python
+RUN apt -y install python
 
 # 指定构建过程中的工作目录
 WORKDIR /app
