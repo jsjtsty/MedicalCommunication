@@ -14,5 +14,3 @@ def ComTest(text):
         return '不客气，欢迎咨再次询。'
     else:
         return '我不知道你在说什么。'
-
-print('test')

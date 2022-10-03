@@ -9,11 +9,11 @@ extern "C" {
 #endif
 /*
  * Class:     com_nulstudio_medicalcommunication_controller_TestController
- * Method:    testJni
- * Signature: (II)I
+ * Method:    nulDataBridgeSendCommunicationString
+ * Signature: (Ljava/lang/String;)Ljava/lang/String;
  */
-JNIEXPORT jint JNICALL Java_com_nulstudio_medicalcommunication_controller_TestController_testJni
-  (JNIEnv *, jobject, jint, jint);
+JNIEXPORT jstring JNICALL Java_com_nulstudio_medicalcommunication_controller_TestController_nulDataBridgeSendCommunicationString
+  (JNIEnv *, jobject, jstring);
 
 #ifdef __cplusplus
 }

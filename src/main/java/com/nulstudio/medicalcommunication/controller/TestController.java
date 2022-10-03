@@ -13,11 +13,11 @@ public class TestController {
         System.load("/app/lib/libnuldatabridge.so");
     }
 
-    protected native int testJni(int a, int b);
+    protected native String nulDataBridgeSendCommunicationString(String input);
 
     @RequestMapping("/")
     @ResponseBody
-    public TestEntity index(@RequestParam int a, @RequestParam int b) {
-        return new TestEntity(String.valueOf(testJni(a, b)));
+    public TestEntity index(@RequestParam String input) {
+        return new TestEntity(nulDataBridgeSendCommunicationString(input));
     }
 }
