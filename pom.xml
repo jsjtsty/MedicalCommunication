@@ -4,9 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.nulstudio</groupId>
     <artifactId>MedicalCommunication</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>MedicalCommunication</name>
     <description>MedicalCommunication</description>
+    <packaging>jar</packaging>
 
     <properties>
         <java.version>1.8</java.version>
